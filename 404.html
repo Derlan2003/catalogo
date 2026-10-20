@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Catálogo</title><meta name="robots" content="noindex">
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sua Festa · Catálogo</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Sua Festa · Catálogo de decorações">
+<meta property="og:description" content="Veja os kits, os valores e se a sua data está livre.">
+<meta property="og:image" content="https://catalogo.suafestabarretos.com.br/logo-sua-festa.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icone-sua-festa-32.png">
+<link rel="apple-touch-icon" href="/icone-sua-festa-180.png">
 <script>
-// catalogo.clientello.com.br/<empresa>/<canal> → catálogo da empresa com a origem certa
-(function(){var c=location.pathname.replace(/^\/+|\/+$/g,'').toLowerCase().split('/'),e=(c[0]||'').replace(/[^a-z0-9-]/g,'');
-if(!e){location.replace('/');return;}
-var M={'':['instagram','bio'],bio:['instagram','bio'],stories:['instagram','stories'],anuncio:['instagram','ads'],facebook:['facebook','pagina'],site:['site','link'],google:['google','perfil'],whatsapp:['whatsapp','status']},o=M[c[1]||'']||['outro',c[1]];
-var a=new URLSearchParams('e='+e+'&utm_source='+o[0]+'&utm_medium='+o[1]);new URLSearchParams(location.search).forEach(function(v,k){a.set(k,v);});
+(function(){var c=location.pathname.replace(/^\/+|\/+$/g,'').toLowerCase().split('/').pop()||'';c=c.replace(/[^a-z0-9-]/g,'');
+var M={'':['instagram','bio'],bio:['instagram','bio'],stories:['instagram','stories'],anuncio:['instagram','ads'],facebook:['facebook','pagina'],site:['site','link'],google:['google','perfil'],whatsapp:['whatsapp','status']},o=M[c]||['outro',c];
+var a=new URLSearchParams('e=suafesta&utm_source='+o[0]+'&utm_medium='+o[1]);new URLSearchParams(location.search).forEach(function(v,k){a.set(k,v);});
 location.replace('/catalogo.html?'+a.toString()+location.hash);})();
-</script></head><body></body></html>
+</script>
+</head><body></body></html>
