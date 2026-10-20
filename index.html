@@ -29,6 +29,15 @@
   @media (max-width:1100px){.esp{display:none}}
   .menu{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 6px;max-width:1100px}
   .menu::-webkit-scrollbar{display:none}
+  .burger{display:none;align-items:center;gap:10px;min-height:44px;max-width:62vw;padding:0 6px 0 14px;border:1.5px solid var(--line);border-radius:999px;background:#fff;color:var(--navy);font-size:15px;font-weight:800;cursor:pointer}
+  .burger span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .burger i{position:relative;flex:none;width:32px;height:32px;border-radius:50%;background:var(--navy)}
+  .burger i:before,.burger i:after,.burger b{content:"";position:absolute;left:9px;width:14px;height:2px;border-radius:2px;background:#fff;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .2s}
+  .burger i:before{top:11px}.burger b{top:15px}.burger i:after{top:19px}
+  .topo.aberto .burger i:before{transform:translateY(4px) rotate(45deg)}
+  .topo.aberto .burger b{opacity:0}
+  .topo.aberto .burger i:after{transform:translateY(-4px) rotate(-45deg)}
+  .veu{display:none;position:fixed;left:0;right:0;bottom:0;top:var(--topo-h,64px);z-index:4;background:rgba(13,16,48,.4);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
   .menu button{position:relative;flex:none;cursor:pointer;min-height:44px;padding:0 14px;border:0;background:transparent;color:var(--ink);font-size:15px;font-weight:800;white-space:nowrap;transition:color .2s}
   .menu button:after{content:"";position:absolute;left:14px;right:14px;bottom:6px;height:3px;border-radius:3px;background:var(--teal);transform:scaleX(0);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
   .menu button:hover{color:var(--navy)}
@@ -135,7 +144,7 @@
   .res-obs{font-size:13px;color:var(--muted);text-align:center}
   .todas{cursor:pointer;border:0;background:none;padding:0;color:var(--navy);font:inherit;font-weight:800;text-decoration:underline}
   @media (max-width:600px){#res{align-items:flex-end;padding:0}.res-box{width:100%;max-height:92vh;border-radius:20px 20px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom))}}
-  @media (prefers-reduced-motion:reduce){.gaveta,.opcoes,.seta,.lgpd .gaveta-in>div,#zoom,#zoom figure,.menu button:after{transition:none}}
+  @media (prefers-reduced-motion:reduce){.gaveta,.opcoes,.seta,.lgpd .gaveta-in>div,#zoom,#zoom figure,.menu button:after,.menu,.veu,.burger i:before,.burger i:after,.burger b{transition:none}}
   .op-l{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
   .op-l span{font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap}
   .op-l strong{font-size:20px;font-weight:900;color:var(--teal)}
@@ -149,16 +158,18 @@
   @media (max-width:1060px) and (min-width:901px){.abrir{padding:0 12px;gap:8px}.abrir small i{display:none}}
   @media (max-width:900px){.grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media (max-width:640px){
-    .topo-in{display:flex;flex-direction:column;align-items:stretch;gap:6px;padding:10px 12px 8px}
-    #marca{align-self:center}
-    .logo{height:52px;margin:0 auto}
-    .marca{text-align:center}
-    .menu{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;max-width:none;margin:0 -12px;padding:0 12px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 14px,#000 calc(100% - 36px),transparent)}
-    .menu.fim{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14px);mask-image:linear-gradient(90deg,transparent 0,#000 14px)}
-    .menu button{padding:0 12px;font-size:14px}
-    .menu button:after{left:12px;right:12px}
-    .topo.mini #marca{display:none}
-    .topo.mini .topo-in{padding-top:4px}
+    .topo-in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px 8px 16px}
+    .logo{height:46px}
+    .marca{font-size:19px}
+    .burger{display:flex}
+    .menu{position:fixed;left:0;right:0;top:var(--topo-h,64px);z-index:6;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:0;max-width:none;max-height:calc(100vh - var(--topo-h,64px));overflow-y:auto;padding:6px 0 calc(14px + env(safe-area-inset-bottom));background:#fff;box-shadow:0 18px 32px rgba(13,16,48,.16);opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .2s,transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s}
+    .topo.aberto .menu{opacity:1;visibility:visible;transform:none;transition:opacity .2s,transform .3s cubic-bezier(.2,.8,.2,1)}
+    .menu button{min-height:54px;padding:0 20px;text-align:left;font-size:17px;white-space:normal;border-bottom:1px solid var(--line)}
+    .menu button:last-child{border-bottom:0}
+    .menu button:after{left:20px;right:auto;width:32px;bottom:9px}
+    .menu button.on{color:var(--teal)}
+    .veu{display:block}
+    .topo.aberto .veu{opacity:1;visibility:visible;transition:opacity .25s}
     .hero{padding:24px 16px}
     .hero h1{font-size:28px}
     main{padding:20px 16px 24px}
@@ -170,7 +181,9 @@
 <header class="topo">
   <div class="topo-in">
     <div id="marca"></div>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Categorias"><span id="cat-atual">Categorias</span><i aria-hidden="true"><b></b></i></button>
     <nav class="menu" id="menu" aria-label="Categorias"></nav>
+    <div class="veu" id="veu" aria-hidden="true"></div>
     <span class="esp" aria-hidden="true"></span>
   </div>
   <div class="faixa" aria-hidden="true"><span style="background:var(--sky)"></span><span style="background:var(--green)"></span><span style="background:var(--orange)"></span><span style="background:var(--blue)"></span><span style="background:var(--pink)"></span><span style="background:var(--teal)"></span></div>
@@ -238,6 +251,7 @@
     menu.innerHTML=m;
     var on=menu.querySelector('.on');if(on&&menu.scrollWidth>menu.clientWidth){menu.style.scrollBehavior='auto';menu.scrollLeft=Math.max(0,on.offsetLeft-menu.offsetLeft-(menu.clientWidth-on.offsetWidth)/2);menu.style.scrollBehavior='';}
     fimMenu();
+    catAtual.textContent=filtro||'Todas as festas';burger.style.visibility=m?'':'hidden';
     var lista=D.kits.filter(function(k){return (!filtro||k.categoria===filtro)&&(!LIVRES||!D.data||k.opcoes.some(function(o){return o.livre;}));});
     var h='<div class="info"><strong>'+esc(filtro||'Todas as opções')+'</strong><span>'+(LIVRES&&D.data?'Livres em '+dataBR(D.data)+' · <button class="todas" data-todas="1">ver todas</button> · ':'')+lista.length+(lista.length===1?' opção':' opções')+'</span></div><section class="grade">';
     if(!lista.length)h+='<p class="vazio">Nenhuma opção nesta categoria.</p>';
@@ -267,16 +281,20 @@
   function fimMenu(){menu.classList.toggle('fim',menu.scrollLeft+menu.clientWidth>=menu.scrollWidth-4);}
   menu.addEventListener('scroll',fimMenu,{passive:true});
   var topoEl=document.querySelector('.topo');
-  window.addEventListener('scroll',function(){var y=window.scrollY;if(y>140)topoEl.classList.add('mini');else if(y<24)topoEl.classList.remove('mini');},{passive:true});
+  var burger=document.getElementById('burger'),catAtual=document.getElementById('cat-atual');
+  function abrirMenu(v){if(v){topoEl.style.setProperty('--topo-h',Math.round(topoEl.getBoundingClientRect().bottom)+'px');}topoEl.classList.toggle('aberto',v);burger.setAttribute('aria-expanded',v?'true':'false');document.body.style.overflow=v?'hidden':'';}
+  burger.addEventListener('click',function(){abrirMenu(!topoEl.classList.contains('aberto'));});
+  document.getElementById('veu').addEventListener('click',function(){abrirMenu(false);});
+  window.addEventListener('resize',function(){if(window.innerWidth>640&&topoEl.classList.contains('aberto'))abrirMenu(false);});
   menu.addEventListener('click',function(e){
     var b=e.target.closest('button');if(!b)return;
-    filtro=b.getAttribute('data-cat')||null;render();window.scrollTo(0,0);
+    filtro=b.getAttribute('data-cat')||null;if(topoEl.classList.contains('aberto'))abrirMenu(false);render();window.scrollTo(0,0);
   });
   var zoom=document.getElementById('zoom'),zImg=document.getElementById('zoom-img'),zCap=document.getElementById('zoom-cap'),zVolta=null;
   function abrirZoom(src,nome,de){zImg.src=src;zImg.alt=nome;zCap.textContent=nome;zVolta=de;zoom.classList.add('on');zoom.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.getElementById('zoom-x').focus();}
   function fecharZoom(){if(!zoom.classList.contains('on'))return;zoom.classList.remove('on');zoom.setAttribute('aria-hidden','true');document.body.style.overflow='';if(zVolta)zVolta.focus();}
   zoom.addEventListener('click',function(e){if(e.target===zoom||e.target.closest('#zoom-x'))fecharZoom();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'){fecharZoom();fecharRes();}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){fecharZoom();fecharRes();if(topoEl.classList.contains('aberto')){abrirMenu(false);burger.focus();}}});
   hero.addEventListener('submit',function(e){e.preventDefault();var v=(document.getElementById('quando-d')||{}).value;if(v)carregar(v);});
   var res=document.getElementById('res'),resIn=document.getElementById('res-in'),RS=null;
   function fecharRes(){if(!RS)return;res.classList.remove('on');res.setAttribute('aria-hidden','true');document.body.style.overflow='';RS=null;}
