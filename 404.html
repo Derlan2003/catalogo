@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Catálogo</title><meta name="robots" content="noindex">
+<script>
+// catalogo.clientello.com.br/<empresa>/<canal> → catálogo da empresa com a origem certa
+(function(){var c=location.pathname.replace(/^\/+|\/+$/g,'').toLowerCase().split('/'),e=(c[0]||'').replace(/[^a-z0-9-]/g,'');
+if(!e){location.replace('/');return;}
+var M={'':['instagram','bio'],bio:['instagram','bio'],stories:['instagram','stories'],anuncio:['instagram','ads'],facebook:['facebook','pagina'],site:['site','link'],google:['google','perfil'],whatsapp:['whatsapp','status']},o=M[c[1]||'']||['outro',c[1]];
+var a=new URLSearchParams('e='+e+'&utm_source='+o[0]+'&utm_medium='+o[1]);new URLSearchParams(location.search).forEach(function(v,k){a.set(k,v);});
+location.replace('/catalogo.html?'+a.toString()+location.hash);})();
+</script></head><body></body></html>
